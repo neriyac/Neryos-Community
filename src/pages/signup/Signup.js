@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useSignup } from '../../hooks/useSignup'
 
 //styles
@@ -41,47 +42,51 @@ export default function Signup() {
   }
 
   return (
-    <form className='auth-form' onSubmit={handleSubmit}>
-      <h2>Signup</h2>
-      <label>
-        <span>Username*</span>
-        <input
-          type="text"
-          required
-          onChange={(e) => setDisplayName(e.target.value)}
-          value={displayName}
-          />
-      </label>
-      <label>
-        <span>Email*</span>
-        <input
-          type="email"
-          required
-          onChange={(e) => setEmail(e.target.value)}
-          value={email}
-          />
-      </label>
-      <label>
-        <span>Password*</span>
-        <input
-          type="password"
-          required
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-          />
-      </label>
-      <label>
-        <span>Profile IMG*</span>
-        <input
-          type="file"
-          onChange={handleFileChange}
-          />
-          {thumbnailError && <div className='error'>{thumbnailError}</div>}
-      </label>
-      {!isPending && <button className="btn">Signup</button>}
-      {isPending &&  <button className="btn" disabled>Loading...</button>}
-      {error && <div className='error'>{error}</div>}
-    </form>
+    <div>
+      <h2 className='title'>Welcome to Neryos Community !<br />Please Signup to reveale more.</h2>
+      <p className='signup-link'>If you already have an account - please <Link to="/login">Login</Link></p>
+      <form className='auth-form' onSubmit={handleSubmit}>
+        <h2>Signup</h2>
+        <label>
+          <span>Username*</span>
+          <input
+            type="text"
+            required
+            onChange={(e) => setDisplayName(e.target.value)}
+            value={displayName}
+            />
+        </label>
+        <label>
+          <span>Email*</span>
+          <input
+            type="email"
+            required
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+            />
+        </label>
+        <label>
+          <span>Password*</span>
+          <input
+            type="password"
+            required
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+            />
+        </label>
+        <label>
+          <span>Profile IMG*</span>
+          <input
+            type="file"
+            onChange={handleFileChange}
+            />
+            {thumbnailError && <div className='error'>{thumbnailError}</div>}
+        </label>
+        {!isPending && <button className="btn">Signup</button>}
+        {isPending &&  <button className="btn" disabled>Loading...</button>}
+        {error && <div className='error'>{error}</div>}
+      </form>
+    </div>
 
   )
 }

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useLogin } from '../../hooks/useLogin'
 
 //styles
@@ -15,29 +16,34 @@ export default function Login() {
   }
 
   return (
-    <form className='auth-form' onSubmit={handleSubmit}>
-      <h2>Login</h2>
-      <label>
-        <span>Email*</span>
-        <input
-          type="email"
-          required
-          onChange={(e) => setEmail(e.target.value)}
-          value={email}
-          />
-      </label>
-      <label>
-        <span>Password*</span>
-        <input
-          type="password"
-          required
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-          />
-      </label>
-      {!isPending && <button className="btn">Login</button>}
-      {isPending &&  <button className="btn" disabled>Loading...</button>}
-      {error && <div className='error'>{error}</div>}
-    </form>
+    <div>
+      <h2 className='title'>Welcome to Neryos Community !<br />Please Login to reveale more.</h2>
+      <p className='signup-link'>If you have no account - please <Link to="/signup">Signup</Link> to create an account</p>
+      <form className='auth-form' onSubmit={handleSubmit}>
+        <h2>Login</h2>
+        <label>
+          <span>Email*</span>
+          <input
+            type="email"
+            required
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+            />
+        </label>
+        <label>
+          <span>Password*</span>
+          <input
+            type="password"
+            required
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+            />
+        </label>
+        {!isPending && <button className="btn">Login</button>}
+        {isPending &&  <button className="btn" disabled>Loading...</button>}
+        {error && <div className='error'>{error}</div>}
+      </form>      
+    </div>
+
   )
 }

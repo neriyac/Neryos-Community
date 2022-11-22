@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import { useAuthContext } from '../hooks/useAuthContext'
+import Avatar from "./Avatar";
 
 
 // styles & images
@@ -14,11 +15,10 @@ export default function Sidebar() {
     <div className='sidebar'>
       <div className="sidebar-content">
         <div className="user">
-            {/* avatar and user here later */}
-            {!user && <p>Welcome !<br />Please Sign up to reveal more.<br />If you already signed up - login</p>}
-            {user && (<p>Welcome {user.displayName}</p>)}
+            <Avatar src={user.photoURL}/>
+            <p>Welcome {user.displayName}</p>
         </div>
-        {user && (<nav className="links">
+        <nav className="links">
             <ul>
                 <li>
                     <NavLink exact to="/">
@@ -34,7 +34,6 @@ export default function Sidebar() {
                 </li>
             </ul>
         </nav>
-        )}
       </div>
     </div>
   )
