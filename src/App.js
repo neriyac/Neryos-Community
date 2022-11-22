@@ -9,6 +9,8 @@ import Create from './pages/create/Create'
 import Login from './pages/login/Login'
 import Signup from './pages/signup/Signup'
 import Project from './pages/project/Project'
+import Navbar from './components/Navbar';
+
 
 function App() {
   return (
@@ -16,19 +18,20 @@ function App() {
       <BrowserRouter>
         <div className='container'>
           <Switch>
+          <Navbar/>
           <Route exact path="/">
             <Dashboard/>
           </Route>
-          <Route path="/Create">
+          <Route path="/create">
             <Create/>
           </Route>
-          <Route path="/Projects/:id">
+          <Route path="/projects/:id">
             <Project/>
           </Route>
-          <Route path="/Login">
+          <Route path="/login">
             <Login/>
           </Route>
-          <Route path="/Signup">
+          <Route path="/signup">
             <Signup/>
           </Route>
         </Switch>
