@@ -1,7 +1,7 @@
 //styles
 import './Login.css'
 
-export default function Login1() {
+export default function Login() {
   return (
     <div>
       Login
