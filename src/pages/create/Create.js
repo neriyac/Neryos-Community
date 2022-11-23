@@ -1,9 +1,13 @@
 import { useEffect, useState } from 'react'
 import Select from 'react-select'
+import { timestamp } from '../../firebase/config'
 import { useCollection } from '../../hooks/useCollection'
+import { useAuthContext } from '../../hooks/useAuthContext'
+import { useFirestore } from '../../hooks/useFirestore'
 
 //styles
 import './Create.css'
+import { useHistory } from 'react-router-dom'
 
 const categories = [
   { value: 'development', label: 'Development' },
@@ -13,8 +17,11 @@ const categories = [
 ]
 
 export default function Create() {
+  const history = useHistory()
+  const { addDocument, response } = useFirestore('projects')
   const { documents } = useCollection('users')
   const [ users, setUsers ] = useState([])
+  const { user } = useAuthContext()
 
   // form field values
   const [name, setName] = useState('')
@@ -34,7 +41,7 @@ export default function Create() {
   
   }, [documents])
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     setFormError(null)
 
@@ -47,7 +54,35 @@ export default function Create() {
       return
     }
 
-    console.log(name, details, dueDate, category.value, assignedUsers);
+    const createdBy = {
+      displayName: user.displayName,
+      photoURL: user.photoURL,
+      id: user.uid
+    }
+
+    const assignedUsersList = assignedUsers.map((u) => {
+      return{
+        displayName: u.value.displayName,
+        photoURL: u.value.photoURL,
+        id: u.value.id
+      }
+    })
+
+    const project = {
+      name,
+      details,
+      category: category.value,
+      dueDate: timestamp.fromDate(new Date(dueDate)),
+      comments: [],
+      createdBy,
+      assignedUsersList
+    }
+
+
+    await addDocument(project)
+    if (!response.error) {
+      history.push("/")
+    }
   }
 
   return (

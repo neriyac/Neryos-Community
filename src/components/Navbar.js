@@ -14,8 +14,8 @@ export default function Navbar() {
     <div className='navbar'>
       <ul>
         <li className="logo">
-            <img src={Temple} alt="temple logo"/>
-            <span>Neryos Community</span>
+          <Link to={"/"}><img src={Temple} alt="temple logo"/></Link>
+            <Link to={"/"}><span>Neryos Community</span></Link>
         </li>
         {!user && (
           <>
