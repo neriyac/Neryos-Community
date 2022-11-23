@@ -5,7 +5,7 @@ import Avatar from "./Avatar";
 
 // styles & images
 import './Sidebar.css'
-import AddIcon from '../assets/activity_icon.svg'
+import AddIcon from '../assets/add_icon.svg'
 import DashboardIcon from '../assets/dashboard_icon.svg'
 
 export default function Sidebar() {
@@ -29,7 +29,7 @@ export default function Sidebar() {
                 <li>
                     <NavLink to="/create">
                         <img src={AddIcon} alt="add project icon" />
-                        <span>New Project..</span>
+                        <span>New Project</span>
                     </NavLink>
                 </li>
             </ul>

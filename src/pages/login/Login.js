@@ -18,7 +18,7 @@ export default function Login() {
   return (
     <div>
       <h2 className='title'>Welcome to Neryos Community !<br />Please Login to reveale more.</h2>
-      <p className='signup-link'>If you have no account - please <Link to="/signup">Signup</Link> to create an account</p>
+      <p className='signup-link'>If you have no account - please <Link to="/signup">Signup</Link> to create one</p>
       <form className='auth-form' onSubmit={handleSubmit}>
         <h2>Login</h2>
         <label>

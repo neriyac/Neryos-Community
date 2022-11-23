@@ -78,6 +78,7 @@ export default function Signup() {
           <span>Profile IMG*</span>
           <input
             type="file"
+            required
             onChange={handleFileChange}
             />
             {thumbnailError && <div className='error'>{thumbnailError}</div>}
