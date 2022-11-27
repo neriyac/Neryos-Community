@@ -1,23 +1,31 @@
 import { useState } from "react"
 import { timestamp } from "../../firebase/config"
 import { useAuthContext } from '../../hooks/useAuthContext'
+import { useFirestore } from '../../hooks/useFirestore'
 
-export default function ProjectComments() {
-    const [newComment, setNewComment] = useState('')
-    const { user } = useAuthContext()
+export default function ProjectComments({ project }) {
+  const { updateDocument, response } = useFirestore('projects')
+  const [newComment, setNewComment] = useState('')
+  const { user } = useAuthContext()
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault()
 
-        const commentToAdd = {
-            displayName: user.displayName,
-            photoURL: user.photoURL,
-            content: newComment,
-            createdAt: timestamp.fromDate(new Date()),
-            id: Math.random()
-        }
-        console.log(commentToAdd);
+    const commentToAdd = {
+        displayName: user.displayName,
+        photoURL: user.photoURL,
+        content: newComment,
+        createdAt: timestamp.fromDate(new Date()),
+        id: Math.random()
     }
+    
+    await updateDocument(project.id, {
+      comments: [...project.comments, commentToAdd]
+    })
+    if (!response.error) {
+      setNewComment('')
+    }
+  }
 
   return (
     <div className="project-comments">

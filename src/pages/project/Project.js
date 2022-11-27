@@ -18,9 +18,9 @@ export default function Project() {
   }
 
   return (
-    <div className='project-detailes'>
+    <div className='project-details'>
       <ProjectSummary project={document}/>
-      <ProjectComments />
+      <ProjectComments project={document}/>
     </div>
   )
 }
