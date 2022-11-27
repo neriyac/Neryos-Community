@@ -32,7 +32,7 @@ export default function Signup() {
       return
     }
     if (selected.size > 2000000) {
-      setThumbnailError('Image file must be less than 100kb')
+      setThumbnailError('Image file must be less than 2MB')
       return
     }
 
